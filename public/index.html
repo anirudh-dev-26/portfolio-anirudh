@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anirudh | Developer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div>
+            <div class="profile-name">Anirudh</div>
+            <div style="font-size: 0.9rem; color: #8b949e;">Full Stack Developer</div>
+            
+            <div class="nav-links">
+                <a href="#about">./about_me</a>
+                <a href="#projects">./projects</a>
+                <a href="#guestbook">./guestbook_log</a>
+            </div>
+        </div>
+        <div style="margin-top: auto; font-size: 0.8rem; color: #484f58;">
+            Status: <span style="color: #238636;">● Online</span>
+        </div>
+    </div>
+
+    <div class="content">
+        <section id="about">
+            <h2>> System_Info</h2>
+            <p>Welcome. I am a BCA student focused on backend architecture and secure deployments.</p>
+        </section>
+
+        <section id="projects">
+            <h2>> Executed_Projects</h2>
+            <div class="card">
+                <h3>Portfolio V1 (Stealth Mode)</h3>
+                <p>Deployed on Render. Built with Node.js & MongoDB.</p>
+            </div>
+        </section>
+
+        <section id="guestbook">
+            <h2>> Encrypted_Transmission</h2>
+            <form action="/submit-guestbook" method="POST">
+                <input type="text" name="name" placeholder="Enter Codename" required>
+                <textarea name="message" placeholder="Message content..." required></textarea>
+                <button type="submit">SEND_DATA</button>
+            </form>
+            
+            <div style="margin-top: 30px;">
+                <h3>> Recent_Logs</h3>
+                <div id="guestbook-entries">
+                    <div class="card" style="border-left: 3px solid #238636;">
+                        <strong>System:</strong> Initializing database connection...
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+      // Simple script to load messages (copied from your original)
+      async function loadEntries() {
+        const response = await fetch('/guestbook-entries');
+        const entries = await response.json();
+        const list = document.getElementById('guestbook-entries');
+        list.innerHTML = entries.map(e => `
+            <div class="card">
+                <strong style="color: #58a6ff">${e.name}</strong>: ${e.message}
+            </div>
+        `).join('');
+      }
+      loadEntries();
+    </script>
+</body>
+</html>
